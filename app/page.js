@@ -1,14 +1,22 @@
-import React from 'react'
-import Link from 'next/link'
-import '@/styles/globals.css'
+"use client";
 
-const page = () => {
+import React, { useEffect } from "react";
+import Link from "next/link";
+import "@/styles/globals.css";
+import { useSession } from "next-auth/react";
+
+const Homepage = () => {
+  const { data: session, status } = useSession();
+
   return (
-  <div>
-    <div className='font-sans font-'>page</div>
-    <div></div>
-  </div>
-  )
-}
+    <div className="text-5xl flex justify-center p-16">
+      {session ? (
+        <div>Hello, {session.user.name}!</div>
+      ) : (
+        <div>Hello, user!</div>
+      )}
+    </div>
+  );
+};
 
-export default page
+export default Homepage;

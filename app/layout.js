@@ -1,13 +1,17 @@
+"use client"
+
 import Navbar from '@/components/Navbar'
+import { SessionProvider } from 'next-auth/react'
 import React from 'react'
 
 const RootLayout = ({ children }) => {
   return (
     <html>
       <body>
-        <Navbar />
-        <div>Hello</div>
-        <div>{children}</div>
+        <SessionProvider session={null}>
+          <Navbar />
+          <div>{children}</div>
+        </SessionProvider>
       </body>
     </html>
   )

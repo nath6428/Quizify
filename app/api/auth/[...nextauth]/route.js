@@ -6,12 +6,11 @@ import SpotifyProvider from "next-auth/providers/spotify"
 // email: profile.email,
 // image: profile.images?.[0]?.url,
 
-
-const handler = NextAuth({
+const auth = NextAuth({
 
     providers:[
         SpotifyProvider({
-            clientId: process.env.SPOTIFY_CLIENT_ID,
+                clientId: process.env.SPOTIFY_CLIENT_ID,
             clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
             profile(profile){
                 return {
@@ -26,4 +25,6 @@ const handler = NextAuth({
     
 
 })
+
+export { auth as GET, auth as POST }
 

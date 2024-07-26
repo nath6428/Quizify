@@ -1,6 +1,9 @@
+"use client"
+
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { signIn } from 'next-auth/react'
 
 const Navbar = () => {
   return (
@@ -20,7 +23,7 @@ const Navbar = () => {
                     Create New Quiz
                 </Link>
             </div>
-            <button>
+            <button onClick={signIn}>
                 <div className=' border-green-400 rounded-xl border-solid border-2 p-4 flex flex-row justify-between items-center'>
                     <Image 
                         src='/spotify-logo.png'

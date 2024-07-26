@@ -1,10 +1,12 @@
+import Navbar from '@/components/Navbar'
 import React from 'react'
 
 const RootLayout = ({ children }) => {
   return (
     <html>
       <body>
-        <h1>Spotify Thang</h1>
+        <Navbar />
+        <div>Hello</div>
         <div>{children}</div>
       </body>
     </html>

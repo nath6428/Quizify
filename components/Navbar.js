@@ -10,7 +10,7 @@ const Navbar = () => {
     
     const [signOutToggle, setSignOutToggle] = useState(false)
     const { data: session, status } = useSession();
-
+    
   return (
     <div className='font-sans flex flex-row items-center h-10 m-16'>
             <Link href="/" className='text-5xl mr-auto'>Spotify Web Thing</Link>
@@ -28,7 +28,7 @@ const Navbar = () => {
                     Create New Quiz
                 </Link>
             </div>
-            {session ?
+            {status === 'authenticated' ?
                 <div className = 'basis-72' onClick={() => {setSignOutToggle((prev) => {return !prev})}}>
                     <div className='flex hover:cursor-pointer justify-around items-center rounded-xl border p-4'>
                         <p>{session.user.name}</p>
@@ -39,13 +39,13 @@ const Navbar = () => {
                                 width: '50px',
                                 height: 'auto',
                             }}
-                            width={50}
+                            width={50} 
                             height={50}
                             className='rounded-full'
                         />
                     </div>
                     {signOutToggle && 
-                        <button onClick={() => signOut()}>
+                        <button onClick={() => signOut()} className='absolute'>
                             <div className='w-72 border-solid border-2 p-4 flex flex-row justify-center items-center'>
                                 <p className='text-xl'>
                                     Sign Out
@@ -54,7 +54,7 @@ const Navbar = () => {
                         </button>
                     }
                 </div> 
-            : 
+            : status === 'unauthenticated' ?
                 <div>
                     <button onClick={() => {signIn('spotify')}}>
                         <div className=' border-green-400 rounded-xl border-solid border-2 p-4 flex flex-row justify-between items-center'>
@@ -71,10 +71,16 @@ const Navbar = () => {
                         </div>
                     </button>
                 </div>
-                
+            : status === 'loading' ?
+                <div className='basis-72'>
+                    <p>Loading...</p>
+                </div>
+            : <div className='basis-72'></div>
             }
     </div>
 )
 }
 
 export default Navbar
+
+

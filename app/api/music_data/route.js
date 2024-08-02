@@ -9,7 +9,6 @@ export const POST = async (req, res) => {
     
     try {
         
-        console.log(type)
         const access_token = await getAccessToken()
         const response = await fetch(`https://api.spotify.com/v1/me/top/${type}?limit=${limit}&time_range=${time_range}`, {
             method: 'GET',

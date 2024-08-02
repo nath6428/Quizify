@@ -3,9 +3,12 @@
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import '@/styles/globals.css'
+import { useSession } from 'next-auth/react'
 
 const MusicData = () => {
-  
+
+
+  const { data: session, status } = useSession()
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState([])
   const [range, setRange] = useState("short_term")
@@ -39,12 +42,27 @@ const MusicData = () => {
 
   }, [type, range])
   
+
+
+  const topTracksPlaylist = async () => {
+
+    const response = await fetch('api/new_playlist', {
+      method: 'POST',
+      body: JSON.stringify({
+        name: "Top Tracks",
+        user_id: session?.user.id
+      })
+    })
+
+    const data = await response.json()
+    console.log(data)
+  }
   
   return (
-    <div>
-      <div className='flex px-6 py-6 flex-row justify-evenly'>
+    <div className='flex flex-col items-center'>
+      <div className='flex px-6 py-6 flex-row basis-4/5 justify-between'>
 
-        <div className='flex flex-row w-80 h-16 pw-4 border-solid border-black border-2'>
+        <div className='flex flex-row w-80 h-16 mx-64 border-solid border-black border-2'>
           <div 
             onClick = {() => {setType('tracks')}} 
             className={`flex justify-center items-center w-40 ${type === 'tracks' ? 'bg-gray-400' : 'hover:bg-gray-200'}`}>
@@ -62,7 +80,7 @@ const MusicData = () => {
 
 
 
-        <div className='flex flex-row min-w-96 h-16 pw-4 justify-evenly border-solid border-black border-2'>
+        <div className='flex flex-row min-w-96 h-16 mx-64 justify-evenly border-solid border-black border-2'>
           <div 
               onClick = {() => {setRange('short_term')}} 
               className={`flex justify-center items-center w-40 ${range === 'short_term' ? 'bg-gray-400' : 'hover:bg-gray-200'}`}>          
@@ -83,6 +101,15 @@ const MusicData = () => {
         </div>
 
       </div>
+
+      {type === 'tracks' ?
+        <button 
+          className='mt-16 w-auto text-lg p-4 rounded-full border-black border-2 bg-green-200 border-solid'
+          onClick={topTracksPlaylist}>
+            + Create New Playlist
+        </button>
+      :
+        <></>}
       
       {loading ?
         <div className="text-5xl flex justify-center p-16 flex-col items-center">Loading...</div>
@@ -92,9 +119,9 @@ const MusicData = () => {
           <div className="flex flex-wrap justify-center">
             {data.map((item, index) => {
               return (
-                <div key={index} className="flex flex-col items-center p-4">
-                  <Image src={item.images ? item.images[0].url : item.album.images[0].url} alt="artist/album image" className=" overflow-hidden rounded-full max-w-48 max-h-48" width={200} height={200}></Image>
-                  <p className="text-2xl mt-4">{item.name}</p>
+                <div key={index} className="flex flex-col items-center p-4 max-w-72 mx-8">
+                  <Image src={item.images ? item.images[0].url : item.album.images[0].url} alt="artist/album image" className=" overflow-hidden rounded-full max-w-56 max-h-56 border-black border-2 border-solid" width={220} height={220}></Image>
+                  <p className="text-2xl mt-4 max-w-64 text-ellipsis overflow-hidden whitespace-nowrap">{item.name}</p>
                 </div>
               )
             })}

@@ -18,8 +18,8 @@ const Navbar = () => {
                 <Link href="/song">
                     Song Page
                 </Link>
-                <Link href="/new-playlist">
-                    New Playlist
+                <Link href="/my_music_data">
+                    My Music Data
                 </Link>
                 <Link href="/new-playlist">
                     Take A Friend's Quiz

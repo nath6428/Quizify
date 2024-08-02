@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "curl": "^0.1.4",
+    "mongoose": "^8.5.2",
     "next": "14.2.5",
     "next-auth": "^4.24.7",
     "react": "^18",

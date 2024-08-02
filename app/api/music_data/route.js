@@ -5,7 +5,6 @@ export const revalidate = 0;
 export const POST = async (req, res) => {
     
     const { type, time_range, limit } = await req.json()
-    console.log(type, time_range, limit, "SDSD")
     
     try {
         

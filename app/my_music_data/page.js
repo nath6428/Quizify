@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import '@/styles/globals.css'
 import { useSession } from 'next-auth/react'
+import { getArtistsData } from '@/utils/getArtistsData'
+import { getTracksData } from '@/utils/getTracksData'
 
 const MusicData = () => {
 
@@ -18,27 +20,25 @@ const MusicData = () => {
 
     const fetchData = async () => {
       
-      try {
-          setLoading(true)
-          const response = await fetch('api/music_data', {
-            method: 'POST',
-            body: JSON.stringify({
-              type: type,
-              time_range: range,
-              limit: 50
-            })
-          })
-          const data = await response.json()
-          await setData(data.items)
-          setLoading(false)
-
-      } catch (error) {
-        console.log(error)
+      setLoading(true)
+      if(type === 'tracks'){
         
+        const data = await getTracksData(range)
+        await setData(data.items)
+        setLoading(false)
+
+      } else if (type === 'artists'){
+
+        const data = await getArtistsData(range)
+        await setData(data.items)
+        setLoading(false)
+
       }
+
     }
 
     fetchData()
+    
 
   }, [type, range])
   

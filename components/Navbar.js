@@ -21,11 +21,11 @@ const Navbar = () => {
                 <Link href="/my_music_data">
                     My Music Data
                 </Link>
-                <Link href="/new-playlist">
-                    Take A Friend's Quiz
+                <Link href="/new-quiz">
+                    Create New Quiz
                 </Link>
                 <Link href="/new-playlist">
-                    Create New Quiz
+                    Take A Friend's Quiz
                 </Link>
             </div>
             {status === 'authenticated' ?

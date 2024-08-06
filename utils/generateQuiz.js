@@ -40,7 +40,7 @@ class Question {
         this.option1 = data[this.num1]?.name
         this.option2 = data[this.num2]?.name
         
-        this.answer = this.num1 > this.num2 ? 1 : 2
+        this.answer = this.num1 < this.num2 ? 0 : 1
 
         console.log(this.option1, this.option2, this.num1, this.num2)
 

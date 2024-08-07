@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { signIn, signOut } from 'next-auth/react'
@@ -11,6 +11,11 @@ const Navbar = () => {
     const [signOutToggle, setSignOutToggle] = useState(false)
     const { data: session, status } = useSession();
     
+    useEffect(() => {
+        console.log(session)
+    }, [status])
+    
+
   return (
     <div className='font-sans flex flex-row items-center h-10 m-16'>
             <Link href="/" className='text-5xl mr-auto'>Spotify Web Thing</Link>
@@ -33,7 +38,7 @@ const Navbar = () => {
                     <div className='flex hover:cursor-pointer justify-around items-center rounded-xl border p-4'>
                         <p>{session.user.name}</p>
                         <Image 
-                            src={session.user.image}
+                            src={session.user.picture}
                             alt="User Image"
                             style={{
                                 width: '50px',
@@ -56,7 +61,7 @@ const Navbar = () => {
                 </div> 
             : status === 'unauthenticated' ?
                 <div>
-                    <button onClick={() => {signIn('spotify')}}>
+                    <button onClick={() => {signIn('spotify', { callbackUrl: '/new-quiz' })}}>
                         <div className=' border-green-400 rounded-xl border-solid border-2 p-4 flex flex-row justify-between items-center'>
                             <Image 
                                 src='/spotify-logo.png'

@@ -26,6 +26,7 @@ const NewQuiz = () => {
             }
             fetchQuestions()
             }
+            
 
     }, [status, session?.user.name])
 

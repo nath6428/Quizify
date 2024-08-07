@@ -1,66 +1,37 @@
-import NextAuth from "next-auth/next"
-import SpotifyProvider from "next-auth/providers/spotify"
-import querystring from 'querystring';
+import NextAuth from "next-auth";
+import SpotifyProvider from "next-auth/providers/spotify";
 
-// id: profile.id,
-// name: profile.display_name,
-// email: profile.email,
-// image: profile.images?.[0]?.url,
-
-const scope = 'user-read-private user-read-email';
-const redirect_uri = 'http://localhost:3000/api/callback';
-
-const spotifyURL = 'https://accounts.spotify.com/authorize?' +
-        querystring.stringify({
-          response_type: 'code',
-          client_id: process.env.SPOTIFY_CLIENT_ID,
-          scope: scope,
-          redirect_uri: redirect_uri,
-        });
+const scope =
+  "user-read-recently-played user-read-playback-state user-top-read user-modify-playback-state user-read-currently-playing user-follow-read playlist-read-private user-read-email user-read-private user-library-read playlist-read-collaborative";
 
 const auth = NextAuth({
-
-    providers:[
-        SpotifyProvider({
-            clientId: process.env.SPOTIFY_CLIENT_ID,
-            clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
-            authorization: spotifyURL,
-            profile(profile){
-                return {
-                    id: profile.id,
-                    name: profile.display_name,
-                    email: profile.email,
-                    image: profile.images?.[0]?.url,  
-                }
-            }
-        })
-    ],
-    callbacks: {
-    async jwt({ token, account, user }) {
-      if (account && user) {
-        return {
-          accessToken: account.access_token,
-          refreshToken: account.refresh_token,
-          accessTokenExpires: account.expires_at * 1000,
-          user,
-        }
+  providers: [
+    SpotifyProvider({
+      clientId: process.env.SPOTIFY_CLIENT_ID,
+      clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
+      authorization: {
+        params: { scope },
+      },
+    }),
+  ],
+  secret: process.env.NEXTAUTH_SECRET,
+  callbacks: {
+    async jwt({ token, account }) {
+      if (account) {
+        token.id = account.id;
+        token.expires_at = account.expires_at;
+        token.accessToken = account.access_token;
       }
-      if (token.accessTokenExpires && Date.now() < token.accessTokenExpires) {
-        return token
-      }
-      const newToken = await refreshAccessToken(token)
-      return newToken
+      return token;
     },
     async session({ session, token }) {
-      session.accessToken = token.accessToken
-      session.error = token.error
-      session.user = token.user
-      return session
+      session.user = token;
+      return session;
     },
   },
-    
+  pages: {
+    signIn: "/login",
+  },
+});
 
-})
-
-export { auth as GET, auth as POST }
-
+export { auth as GET, auth as POST };

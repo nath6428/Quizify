@@ -8,7 +8,7 @@ import React from 'react'
 const RootLayout = ({ children, pageProps }) => {
   return (
     <html>
-      <body>
+      <body className='text-text bg-background'>
         <SessionProvider session={null}>
           <Navbar />
           <div>{children}</div>

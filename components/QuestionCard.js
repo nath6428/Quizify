@@ -1,4 +1,15 @@
 import React, { useState } from 'react'
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+  } from "@/components/ui/card"
+  
+
+
 
 const QuestionCard = ({ question, setScore }) => {
   
@@ -15,9 +26,10 @@ const QuestionCard = ({ question, setScore }) => {
             setCorrect(false)
         }
     }
-
+    
     return (
-        <div className='flex flex-col items-center rounded-full my-5 mx-52 p-4 border-black border-2'>
+        <div className='flex flex-col items-center rounded-full my-5 mx-52 p-4 border-white border-2'>
+
             {answered ?
                 <div>
                     {correct 

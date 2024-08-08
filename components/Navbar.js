@@ -17,9 +17,9 @@ const Navbar = () => {
     
 
   return (
-    <div className='font-sans flex flex-row items-center h-10 m-16'>
-            <Link href="/" className='text-5xl mr-auto'>Spotify Web Thing</Link>
-            <div className='flex flex-row justify-between mr-20 w-1/2'>
+    <div className='font-sans flex flex-row items-center justify-evenly h-10 m-16'>
+            <Link href="/" className='text-6xl mr-auto'>Quizify</Link>
+            <div className='flex flex-row justify-between mr-20 w-3/5 text-lg'>
                 <Link href="/song">
                     Song Page
                 </Link>

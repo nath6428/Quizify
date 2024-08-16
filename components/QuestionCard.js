@@ -7,15 +7,17 @@ import {
     CardHeader,
     CardTitle,
   } from "@/components/ui/card"
+
   
 
 
 
-const QuestionCard = ({ question, setScore }) => {
+const QuestionCard = ({ question, setScore, nextQuestion }) => {
   
     const { username, type, range, rangeString, num1, num2, option1, option2, answer } = question
     const [answered, setAnswered] = useState(false)
     const [correct, setCorrect] = useState(false)
+
     
     const handleAnswer = (index) => {
         setAnswered(true)
@@ -25,10 +27,11 @@ const QuestionCard = ({ question, setScore }) => {
         } else {
             setCorrect(false)
         }
+        nextQuestion()
     }
     
     return (
-        <div className='flex flex-col items-center rounded-full my-5 mx-52 p-4 border-white border-2'>
+        <div className='flex flex-col items-center w-3/4 h-1/2'>
 
             {answered ?
                 <div>
@@ -40,13 +43,22 @@ const QuestionCard = ({ question, setScore }) => {
                     }
                 </div>
             :
-                <div className='flex flex-col items-center'>
-                    <h1 className='m-2'>{`Which of the following ${type} has been listened to more by ${username} in the last ${rangeString}?`}</h1>
-                    <div className='flex flex-col'>
-                        <button onClick={() => {handleAnswer(0)}}>{option1?.name}</button>
-                        <button onClick={() => {handleAnswer(1)}}>{option2?.name}</button>
+                <div className='flex flex-col items-center p-24'>
+                    <h1 className='mb-32 text-3xl flex-wrap'>{`Which of the following ${type} has been listened to more by ${username} in the last ${rangeString}?`}</h1>
+                    <div className='flex mb-8 p-4'>
+                    <button onClick={() => {handleAnswer(0)}}>
+                        <div className='flex items-center justify-center w-64 h-64 border-white border-2 rounded-3xl mx-48 text-2xl'>
+                            {option1?.name}
+                        </div>
+                    </button>
+                    <button onClick={() => {handleAnswer(1)}}>
+                        <div className='flex items-center justify-center w-64 h-64 border-white border-2 rounded-3xl mx-48 text-2xl'>
+                           {option2?.name}
+                        </div>
+                    </button>
                     </div>
                 </div>
+                
             }
         </div>
   )

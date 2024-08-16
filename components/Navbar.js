@@ -11,10 +11,6 @@ const Navbar = () => {
     const [signOutToggle, setSignOutToggle] = useState(false)
     const { data: session, status } = useSession();
     
-    useEffect(() => {
-        console.log(session)
-    }, [status])
-    
 
   return (
     <div className='font-sans flex flex-row items-center justify-evenly h-10 m-16'>
@@ -29,7 +25,7 @@ const Navbar = () => {
                 <Link href="/new-quiz">
                     Create New Quiz
                 </Link>
-                <Link href="/new-playlist">
+                <Link href="/play-quiz">
                     Take A Friend's Quiz
                 </Link>
             </div>

@@ -9,18 +9,17 @@ import { nanoid } from 'nanoid'
 
 
 const NewQuiz = () => {
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
     const { data: session, status } = useSession();
     const [questions, setQuestions] = useState([])
-    const [score, setScore] = useState(0);
-    const quizurl = nanoid(6);
+    const [quizurl, setQuizurl] = useState(nanoid(6))
 
     useEffect(() => {
         
 
         if(status === 'authenticated'){
             const fetchQuestions = async () => {
-                setLoading(true)
+                
                 const quiz = await generateQuiz(session.user.name)
                 setQuestions(quiz)
                 setLoading(false)
@@ -39,31 +38,22 @@ const NewQuiz = () => {
             body: JSON.stringify({
                 user_id: session.user.email,
                 questions: quiz,
-                quizurl: quizurl
+                quizurl: quizurl,
+                // leaderboard: []
             })
         })
     }
 
     return (
         <div>
-            {loading 
-            ?
-                <h1>Loading...</h1> 
-            :
-                <div className='flex flex-col items-center'>
-                    {questions.map((question, index) => {
-                        return (
-                            <div key={index}>
-                                <QuestionCard question = {question} setScore = {setScore}/>
-                            </div>
-                        )
-                    })}
-                    <h1>Your score: {score}</h1>
-                </div>
-            
-            }
-
-            
+                {loading 
+                ? 
+                    <h1>Loading...</h1>
+                :
+                    <div className='flex flex-col items-center'>
+                        Quiz URL: {quizurl}
+                    </div>
+                }
         </div>
     )
 }

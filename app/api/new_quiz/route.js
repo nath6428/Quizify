@@ -22,3 +22,4 @@ export const POST = async (req, res) => {
         return new Response(error, { status: 500 })
     }
 }
+

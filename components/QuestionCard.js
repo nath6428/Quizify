@@ -13,13 +13,13 @@ import {
 
 const QuestionCard = ({ question, setScore }) => {
   
-    const { username, type, range, data } = question
+    const { username, type, range, rangeString, num1, num2, option1, option2, answer } = question
     const [answered, setAnswered] = useState(false)
     const [correct, setCorrect] = useState(false)
     
     const handleAnswer = (index) => {
         setAnswered(true)
-        if(question.checkAnswer(index)){
+        if(answer === index){
             setCorrect(true)
             setScore((prevScore) => prevScore + 1)
         } else {
@@ -41,13 +41,10 @@ const QuestionCard = ({ question, setScore }) => {
                 </div>
             :
                 <div className='flex flex-col items-center'>
-                    <h1 className='m-2'>{question.getQuestion()}</h1>
+                    <h1 className='m-2'>{`Which of the following ${type} has been listened to more by ${username} in the last ${rangeString}?`}</h1>
                     <div className='flex flex-col'>
-                        {question.getOptionsArray().map((option, index) => {
-                            return (
-                                <button key={index} onClick={() => {handleAnswer(index)}}>{option}</button>
-                            )
-                        })}
+                        <button onClick={() => {handleAnswer(0)}}>{option1?.name}</button>
+                        <button onClick={() => {handleAnswer(1)}}>{option2?.name}</button>
                     </div>
                 </div>
             }

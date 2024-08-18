@@ -34,7 +34,7 @@ const QuestionCard = ({ question, setScore, nextQuestion }) => {
         <div className='flex flex-col items-center w-3/4 h-1/2'>
 
             {answered ?
-                <div>
+                <div className ={`flex justify-center m-16 p-44 text-4xl border-2 border-white rounded-full ${correct ? 'bg-green-400' : 'bg-red-500'}`}>
                     {correct 
                     ?
                         <h1>Correct!</h1>
@@ -46,16 +46,16 @@ const QuestionCard = ({ question, setScore, nextQuestion }) => {
                 <div className='flex flex-col items-center p-24'>
                     <h1 className='mb-32 text-3xl flex-wrap'>{`Which of the following ${type} has been listened to more by ${username} in the last ${rangeString}?`}</h1>
                     <div className='flex mb-8 p-4'>
-                    <button onClick={() => {handleAnswer(0)}}>
-                        <div className='flex items-center justify-center w-64 h-64 border-white border-2 rounded-3xl mx-48 text-2xl'>
-                            {option1?.name}
-                        </div>
-                    </button>
-                    <button onClick={() => {handleAnswer(1)}}>
+                        <button onClick={() => {handleAnswer(0)}}>
+                            <div className='flex items-center justify-center w-64 h-64 border-white border-2 rounded-3xl mx-48 text-2xl'>
+                                {option1?.name}
+                            </div>
+                        </button>
+                        <button onClick={() => {handleAnswer(1)}}>
                         <div className='flex items-center justify-center w-64 h-64 border-white border-2 rounded-3xl mx-48 text-2xl'>
                            {option2?.name}
                         </div>
-                    </button>
+                        </button>
                     </div>
                 </div>
                 

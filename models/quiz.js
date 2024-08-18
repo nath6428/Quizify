@@ -12,6 +12,10 @@ const quizSchema = new Schema({
     user_id: {
         type: String,
         required: true
+    },
+    leaderboard: {
+        type: Array,
+        required: true
     }
     
 })

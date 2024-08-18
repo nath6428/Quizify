@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import QuestionCard from './QuestionCard'
+import Leaderboard from './Leaderboard';
 
-const QuestionDisplay = ({ questions, setScore }) => {
+const QuestionDisplay = ({ questions, setScore, score}) => {
 
     const [index, setIndex] = useState(0)
-    
-    
+    const leaderboard = questions?.leaderboard
 
     const nextQuestion = () => {
 
@@ -18,7 +18,12 @@ const QuestionDisplay = ({ questions, setScore }) => {
 
   return (
     <div className='flex flex-col items-center w-full h-full'>
-        <QuestionCard question={questions[index]} key={index} setScore={setScore} nextQuestion={nextQuestion} />
+        {index < questions.length
+        ?
+            <QuestionCard question={questions[index]} key={index} setScore={setScore} nextQuestion={nextQuestion} />
+        :
+            <Leaderboard leaderboard = {leaderboard} name={name} score={score}/>
+        }
     </div>
   )
 }

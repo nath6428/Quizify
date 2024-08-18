@@ -39,7 +39,7 @@ const NewQuiz = () => {
                 user_id: session.user.email,
                 questions: quiz,
                 quizurl: quizurl,
-                // leaderboard: []
+                leaderboard: []
             })
         })
     }

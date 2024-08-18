@@ -6,7 +6,6 @@ export const POST = async (req, res) => {
     const { quizurl, newLeaderboard } = await req.json();
 
     try {
-        console.log(newLeaderboard)
         await connectToDB()
         await Quiz.updateOne(
             { quizurl },

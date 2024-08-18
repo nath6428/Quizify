@@ -8,7 +8,6 @@ const QuestionDisplay = ({ data, setScore, score, name }) => {
     const { questions, leaderboard, quizurl } = data
 
     const nextQuestion = () => {
-        console.log(name, "Name")
         setTimeout(() => {
             setIndex((prevIndex) => prevIndex + 1)
         }, 2000)

@@ -26,7 +26,7 @@ const Navbar = () => {
                     Create New Quiz
                 </Link>
                 <Link href="/play-quiz">
-                    Take A Friend's Quiz
+                    Take A Friend&apos;s Quiz
                 </Link>
             </div>
             {status === 'authenticated' ?

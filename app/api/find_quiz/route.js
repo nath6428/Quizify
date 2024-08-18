@@ -9,7 +9,6 @@ export const POST = async (req, res) => {
         await connectToDB()
         const quizData = await Quiz.findOne({ quizurl: url })
         return new Response(JSON.stringify(quizData), { status: 200 })
-        console.log(quizData)
         
     } catch (error) {
         return new Response("Error fetching quiz", { status: 500 })

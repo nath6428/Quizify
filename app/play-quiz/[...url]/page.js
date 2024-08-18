@@ -14,8 +14,8 @@ const PlayQuiz = ({ params }) => {
     const url = params.url
     const [quizData, setQuizData] = useState([])
     const [score, setScore] = useState(0);
-    const [notFound, setNotFound] = useState(false)
-    const [name, setName] = useState('')
+    const [notFound, setNotFound] = useState(true)
+    const [name, setName] = useState('3ddw')
     const [nameEntered, setNameEntered] = useState(false)
     
 
@@ -34,10 +34,10 @@ const PlayQuiz = ({ params }) => {
                 }) 
     
                 const data = await response.json()
+                if(!data) throw new Error('Quiz not found')
                 setNotFound(false)
-                const questions = data.questions
                 setLoading(false)
-                setQuizData(questions)
+                setQuizData(data)
                 
             } catch(e){
                 setLoading(false)
@@ -65,8 +65,7 @@ const PlayQuiz = ({ params }) => {
                             {nameEntered
                             ?
                                 <div className='flex flex-col items-center w-full h-full'>
-                                    <QuestionDisplay questions={quizData} setScore={setScore} score={score} />
-                                    <h1 className='text-xl'>Your score: {score}</h1>
+                                    <QuestionDisplay data={quizData} setScore={setScore} score={score} name={name} />
                                 </div>
                             :
                             <div className='flex flex-col w-80 text-2xl items-center justify-center' onKeyDown={(e) => e.key === 'Enter' && setNameEntered(true)}>

@@ -34,7 +34,7 @@ const QuestionCard = ({ question, setScore, nextQuestion }) => {
         <div className='flex flex-col items-center w-3/4 h-1/2'>
 
             {answered ?
-                <div className ={`flex justify-center m-16 p-44 text-4xl border-2 border-white rounded-full ${correct ? 'bg-green-400' : 'bg-red-500'}`}>
+                <div className ={`flex max-h-16 justify-center items-center p-60 m-16 text-4xl border-2 border-white rounded-2xl ${correct ? 'bg-green-400' : 'bg-red-500'}`}>
                     {correct 
                     ?
                         <h1>Correct!</h1>

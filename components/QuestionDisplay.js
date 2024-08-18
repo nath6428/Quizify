@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react'
 import QuestionCard from './QuestionCard'
 import Leaderboard from './Leaderboard';
 
-const QuestionDisplay = ({ questions, setScore, score}) => {
+const QuestionDisplay = ({ data, setScore, score, name }) => {
 
     const [index, setIndex] = useState(0)
-    const leaderboard = questions?.leaderboard
+    const { questions, leaderboard, quizurl } = data
 
     const nextQuestion = () => {
-
+        console.log(name, "Name")
         setTimeout(() => {
             setIndex((prevIndex) => prevIndex + 1)
         }, 2000)
@@ -20,9 +20,12 @@ const QuestionDisplay = ({ questions, setScore, score}) => {
     <div className='flex flex-col items-center w-full h-full'>
         {index < questions.length
         ?
-            <QuestionCard question={questions[index]} key={index} setScore={setScore} nextQuestion={nextQuestion} />
+            <div className='flex flex-col items-center w-full'>
+                <h1 className='text-xl'>Your score: {score}</h1>
+                <QuestionCard question={questions[index]} key={index} setScore={setScore} nextQuestion={nextQuestion} />
+            </div>
         :
-            <Leaderboard leaderboard = {leaderboard} name={name} score={score}/>
+            <Leaderboard quizurl={quizurl} leaderboard = {leaderboard} name={name} score={score}/>
         }
     </div>
   )

@@ -30,11 +30,18 @@ const Song = () => {
 
   return (
     <div>
-      {songData && 
+      {songData
+      ?
       <div className="text-5xl flex justify-center p-16 flex-col items-center">
         <p>You are listening to {songData.name} by {songData.artists[0].name}</p>
         <Image className='mt-10' src={songData.album.images[0].url} alt="album cover" width={300} height={300} />
-      </div>}
+      </div>
+      :
+      <div className="text-5xl flex justify-center p-16 flex-col items-center">
+        You aren't listening to anything right now!
+      </div>
+      }
+
       
     </div>
   )

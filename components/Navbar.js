@@ -17,7 +17,7 @@ const Navbar = () => {
             <Link href="/" className='text-6xl mr-auto'>Quizify</Link>
             <div className='flex flex-row justify-between mr-20 w-3/5 text-lg'>
                 <Link href="/song">
-                    Song Page
+                    Currently Listening
                 </Link>
                 <Link href="/my_music_data">
                     My Music Data
@@ -57,7 +57,7 @@ const Navbar = () => {
                 </div> 
             : status === 'unauthenticated' ?
                 <div>
-                    <button onClick={() => {signIn('spotify', { callbackUrl: '/new-quiz' })}}>
+                    <button onClick={() => {signIn('spotify', { callbackUrl: '/' })}}>
                         <div className=' border-green-400 rounded-xl border-solid border-2 p-4 flex flex-row justify-between items-center'>
                             <Image 
                                 src='/spotify-logo.png'

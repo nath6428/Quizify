@@ -29,6 +29,8 @@ const auth = NextAuth({
       console.log(token)
       return session;
     },
+    async redirect(url, baseUrl) {
+      return baseUrl;
   },
   pages: {
     signIn: "/login",

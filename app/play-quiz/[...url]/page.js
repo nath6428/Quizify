@@ -8,6 +8,7 @@ import QuestionDisplay from '@/components/QuestionDisplay'
 import { Input } from '@/components/ui/input'
 
 
+
 const PlayQuiz = ({ params }) => {
 
     const [loading, setLoading] = useState(true)
@@ -32,6 +33,7 @@ const PlayQuiz = ({ params }) => {
                         url: url
                     })
                 }) 
+                    
     
                 const data = await response.json()
                 if(!data) throw new Error('Quiz not found')

@@ -7,6 +7,7 @@ import { useSession } from "next-auth/react";
 
 const Homepage = () => {
   const { data: session, status } = useSession();
+  console.log(session, status)
 
   return (
     <div className="text-5xl flex justify-center p-16">

@@ -28,9 +28,6 @@ const auth = NextAuth({
       session.user = token;
       console.log(token)
       return session;
-    },
-    async redirect(url, baseUrl) {
-      return baseUrl;
     }
   },
   pages: {

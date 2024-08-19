@@ -38,7 +38,7 @@ const Song = () => {
       </div>
       :
       <div className="text-5xl flex justify-center p-16 flex-col items-center">
-        You aren't listening to anything right now!
+        You aren&apos;t listening to anything right now!
       </div>
       }
 

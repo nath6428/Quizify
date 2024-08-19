@@ -31,6 +31,7 @@ const auth = NextAuth({
     },
     async redirect(url, baseUrl) {
       return baseUrl;
+    }
   },
   pages: {
     signIn: "/login",

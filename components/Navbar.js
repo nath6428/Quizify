@@ -11,6 +11,9 @@ const Navbar = () => {
     const [signOutToggle, setSignOutToggle] = useState(false)
     const { data: session, status } = useSession();
     
+    useEffect(() => {
+        console.log(session, status, "Navbar session")
+    }, [status, session])
 
   return (
     <div className='font-sans flex flex-row items-center justify-evenly h-10 m-16'>

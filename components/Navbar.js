@@ -1,19 +1,44 @@
 "use client"
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { signIn, signOut } from 'next-auth/react'
 import { useSession } from 'next-auth/react'
+import { getSession } from '@/utils/mySession'
 
 const Navbar = () => {
     
     const [signOutToggle, setSignOutToggle] = useState(false)
-    const { data: session, status } = useSession();
-    
+    const [session, setSession] = useState(null);
+    const [status, setStatus] = useState('unauthenticated');
+
     useEffect(() => {
-        console.log(session, status, "Navbar session")
-    }, [status, session])
+        const fetchSession = async () => {
+        setStatus('loading');
+        try {
+            const res = await fetch('/api/session');
+            const newSession = await res.json();
+            
+            if (newSession) {
+            setSession(newSession);
+            setStatus('authenticated');
+            } else {
+            setStatus('unauthenticated');
+            }
+        } catch (error) {
+            console.error('Error fetching session:', error);
+            setStatus('error');
+        }
+        };
+        
+        fetchSession();
+    }, []); // Empty dependency array means this effect runs once on mount
+
+    useEffect(() => {
+        console.log('Current session:', session);
+        console.log('Current status:', status);
+    }, [session, status]); // Log whenever session or status changes
 
   return (
     <div className='font-sans flex flex-row items-center justify-evenly h-10 m-16'>
@@ -32,7 +57,7 @@ const Navbar = () => {
                     Take A Friend&apos;s Quiz
                 </Link>
             </div>
-            {status === 'authenticated' ?
+            {status == 'authenticated' ?
                 <div className = 'basis-72' onClick={() => {setSignOutToggle((prev) => {return !prev})}}>
                     <div className='flex hover:cursor-pointer justify-around items-center rounded-xl border p-4'>
                         <p>{session.user.name}</p>
@@ -58,7 +83,7 @@ const Navbar = () => {
                         </button>
                     }
                 </div> 
-            : status === 'unauthenticated' ?
+            : status == 'unauthenticated' ?
                 <div>
                     <button onClick={() => {signIn('spotify', { callbackUrl: '/' })}}>
                         <div className=' border-green-400 rounded-xl border-solid border-2 p-4 flex flex-row justify-between items-center'>
@@ -75,7 +100,7 @@ const Navbar = () => {
                         </div>
                     </button>
                 </div>
-            : status === 'loading' ?
+            : status == 'loading' ?
                 <div className='basis-72'>
                     <p>Loading...</p>
                 </div>

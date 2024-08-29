@@ -77,7 +77,6 @@ export const generateQuiz = async (username) => {
         }
         
     const dataList = await fetchData()
-    await console.log(dataList)
     await generateQuestions(questionsList, dataList)
     return await questionsList
     

@@ -1,10 +1,10 @@
-const { getSession } = require("@/utils/mySession");
+const { getSessionFromServer } = require("@/utils/mySession");
 
 
 export const GET = async (req, res) => {
 
     try {
-        const session = await getSession();
+        const session = await getSessionFromServer();
         return new Response(JSON.stringify(session), { status: 201 })
     } catch (error) {
         console.log(error)

@@ -1,17 +1,35 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import "@/styles/globals.css";
 import { useSession } from "next-auth/react";
+import { getSession } from "@/utils/getSession";
 
 const Homepage = () => {
-  const { data: session, status } = useSession();
-  
+  const [session, setSession] = useState(null);
+
+  useEffect(() => {
+    const fetchSession = async () => {
+      try {
+        const newSession = await getSession();
+        setSession(newSession);
+      } catch (error) {
+        console.error("Error fetching session:", error);
+      }
+    };
+
+    fetchSession();
+  }, []);
+
+  useEffect(() => {
+    console.log(session);
+  }, [session]);
+
   return (
     <div className="text-5xl flex justify-center p-16">
-      {session ? (
-        <div>Hello, {session.user.name}!</div>
+      {session && session.user ? (
+        <div>Hello, {session.user.name || 'User'}!</div>
       ) : (
         <div>Hello, user!</div>
       )}

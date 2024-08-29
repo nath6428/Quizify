@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { signIn, signOut } from 'next-auth/react'
 import { useSession } from 'next-auth/react'
-import { getSession } from '@/utils/mySession'
+import { getSession } from '@/utils/getSession'
 
 const Navbar = () => {
     
@@ -15,30 +15,23 @@ const Navbar = () => {
 
     useEffect(() => {
         const fetchSession = async () => {
-        setStatus('loading');
-        try {
-            const res = await fetch('/api/session');
-            const newSession = await res.json();
-            
-            if (newSession) {
+          try {
+            setStatus('loading');
+            const newSession = await getSession();
             setSession(newSession);
-            setStatus('authenticated');
+            if (newSession) {
+              setStatus('authenticated');
             } else {
-            setStatus('unauthenticated');
+              setStatus('unauthenticated');
             }
-        } catch (error) {
-            console.error('Error fetching session:', error);
+          } catch (error) {
+            console.error("Error fetching session:", error);
             setStatus('error');
-        }
+          }
         };
-        
+    
         fetchSession();
-    }, []); // Empty dependency array means this effect runs once on mount
-
-    useEffect(() => {
-        console.log('Current session:', session);
-        console.log('Current status:', status);
-    }, [session, status]); // Log whenever session or status changes
+      }, []);
 
   return (
     <div className='font-sans flex flex-row items-center justify-evenly h-10 m-16'>

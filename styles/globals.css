@@ -11,6 +11,35 @@
     @apply bg-background text-text font-quicksand font-semibold;
   }
 
+    /* Custom scrollbar styles */
+  ::-webkit-scrollbar {
+    width: 8px; /* Thin scrollbar width */
+    height: 8px; /* Thin horizontal scrollbar width */
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background)); /* Background of the scrollbar track */
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary)); /* Color of the scrollbar thumb */
+    border-radius: 8px; /* Rounded corners for the scrollbar thumb */
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary-foreground)); /* Hover color for the scrollbar thumb */
+  }
+
+  ::-webkit-scrollbar-corner {
+    background: hsl(var(--background)); /* Color for the bottom-right corner */
+  }
+
+  /* Optional: Add padding to the scrollbar area */
+  .scrollbar-padded {
+    padding-right: 8px; /* Padding on the right for the vertical scrollbar */
+    padding-bottom: 8px; /* Padding at the bottom for the horizontal scrollbar */
+  }
+
   :root {
    
     

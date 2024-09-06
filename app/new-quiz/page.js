@@ -66,7 +66,7 @@ const NewQuiz = () => {
     }
     
     const copyURL = () => {
-        navigator.clipboard.writeText(quizurl)
+        navigator.clipboard.writeText(`https://quizify-self.vercel.app/play-quiz/${quizurl}`)
         setShowCopied(true)
         setTimeout(() => {
             setShowCopied(false)

@@ -4,6 +4,8 @@
 
 Quizify is an engaging web application that transforms your Spotify listening habits into fun, interactive quizzes. Challenge friends to guess your favorite tracks, artists, and playlists!
 
+#### NOTE: The app is currently in development mode, and only whitelisted accounts can sign in, to get your account whitelisted, email nathancrasto5@gmail.com. To try a quiz, go to: https://quizify-self.vercel.app/play-quiz/j5giv6
+
 ## Features
 
 - 🔐 Secure Spotify authentication

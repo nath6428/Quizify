@@ -37,7 +37,7 @@ const Song = () => {
         <Image className='mt-10' src={songData.album.images[0].url} alt="album cover" width={300} height={300} />
       </div>
       :
-      <div className="text-5xl flex justify-center p-16 flex-col items-center">
+      <div className="text-xl md:text-5xl text-center flex justify-center p-16 flex-col items-center">
         You aren&apos;t listening to anything right now!
       </div>
       }

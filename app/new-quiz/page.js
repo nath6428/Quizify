@@ -85,8 +85,8 @@ const NewQuiz = () => {
                     <h1>Loading...</h1>
                 :
                     <div className='flex flex-col items-center'>
-                        Quiz URL: {quizurl}
-                        <button onClick={copyURL} className='mt-10 text-2xl border-2 border-white rounded-full p-4'>Copy to Clipboard</button>
+                        Quiz Code: {quizurl}
+                        <button onClick={copyCode} className='mt-10 text-2xl border-2 border-white rounded-full p-4'>Copy URL to Clipboard</button>
                         <button onClick={redirectURL} className='mt-10 text-2xl border-2 border-white rounded-full p-4'>Play Quiz</button>
                     </div>
                 }

@@ -27,7 +27,7 @@ const Homepage = () => {
   }, [session]);
 
   return (
-    <div className="text-5xl flex justify-center p-16">
+    <div className="text-4xl flex justify-center p-16 md:text-6xl">
       {session && session.user ? (
         <div>Hello, {session.user.name || 'User'}!</div>
       ) : (

@@ -13,6 +13,7 @@ const NewQuiz = () => {
     const { data: session, status } = useSession();
     const [questions, setQuestions] = useState([])
     const [quizurl, setQuizurl] = useState(nanoid(6))
+    const [showCopied, setShowCopied] = useState(false)
 
     useEffect(() => {
         
@@ -43,17 +44,40 @@ const NewQuiz = () => {
             })
         })
     }
+    
+    const copyURL = () => {
+        navigator.clipboard.writeText(`https://quizify-self.vercel.app/play-quiz/${quizurl}`)
+        setShowCopied(true)
+        setTimeout(() => {
+            setShowCopied(false)
+        }, 5000)
+
+    }
+
+    const redirectURL = () => {
+        window.location.href = `https://quizify-self.vercel.app/play-quiz/${quizurl}`
+    }
 
     return (
-        <div>
+        <div className='flex flex-col items-center mt-10 justify-between md:text-4xl'>
                 {loading 
                 ? 
                     <h1>Loading...</h1>
                 :
                     <div className='flex flex-col items-center'>
                         Quiz URL: {quizurl}
+                        <button onClick={copyURL} className='mt-10 text-2xl border-2 border-white rounded-full p-4'>Copy to Clipboard</button>
+                        <button onClick={redirectURL} className='mt-10 text-2xl border-2 border-white rounded-full p-4'>Play Quiz</button>
                     </div>
                 }
+                <div>
+                    {showCopied ? (
+                        <p className="mt-24 transition-opacity duration-300 opacity-100">Copied to clipboard!</p>
+                    ) : (
+                        <p className="mt-24 transition-opacity duration-300 opacity-0">Copied to clipboard!</p>
+                    )}
+
+                </div>
         </div>
     )
 }

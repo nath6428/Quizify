@@ -6,7 +6,7 @@ export const POST = async (req, res) => {
     await connectToDB();
 
     const { questions, user_id, quizurl, leaderboard } = await req.json();
-
+    
     try {
         const quizobj = await Quiz.create({
             user_id: user_id,

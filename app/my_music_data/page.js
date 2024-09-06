@@ -100,15 +100,6 @@ const MusicData = () => {
         </div>
 
       </div>
-
-      {type === 'tracks' ?
-        <button 
-          className='mt-16 w-auto text-lg p-4 rounded-full border-black border-2 bg-green-200 border-solid'
-          onClick={topTracksPlaylist}>
-            + Create New Playlist
-        </button>
-      :
-        <></>}
       
       {loading ?
         <div className="text-5xl flex justify-center p-16 flex-col items-center">Loading...</div>

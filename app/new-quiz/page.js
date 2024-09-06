@@ -6,17 +6,37 @@ import { useSession } from 'next-auth/react'
 import '@/styles/globals.css'
 import QuestionCard from '@/components/QuestionCard'
 import { nanoid } from 'nanoid'
+import { getSession } from '@/utils/getSession'
+
 
 
 const NewQuiz = () => {
     const [loading, setLoading] = useState(true)
-    const { data: session, status } = useSession();
+    const [session, setSession] = useState(null)
+    const [status, setStatus] = useState('unauthenticated')
     const [questions, setQuestions] = useState([])
     const [quizurl, setQuizurl] = useState(nanoid(6))
     const [showCopied, setShowCopied] = useState(false)
 
+    const fetchSession = async () => {
+        try {
+          setStatus('loading');
+          const newSession = await getSession();
+          setSession(newSession);
+          if (newSession) {
+            setStatus('authenticated');
+          } else {
+            setStatus('unauthenticated');
+          }
+        } catch (error) {
+          console.error("Error fetching session:", error);
+          setStatus('error');
+        }
+      };
+    
     useEffect(() => {
         
+        fetchSession()
 
         if(status === 'authenticated'){
             const fetchQuestions = async () => {

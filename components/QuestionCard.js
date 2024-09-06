@@ -57,7 +57,7 @@ const QuestionCard = ({ question, setScore, nextQuestion }) => {
         <div className='flex flex-col items-center w-3/4 h-1/2'>
 
             {answered ?
-                <div className ={`flex max-h-16 justify-center items-center p-60 m-16 text-4xl border-2 border-white rounded-2xl ${correct ? 'bg-green-400' : 'bg-red-500'}`}>
+                <div className ={`flex max-h-16 justify-center items-center py-36 px-24 xl:p-60 mt-12 xl:m-16 text-4xl border-2 border-white rounded-2xl ${correct ? 'bg-green-400' : 'bg-red-500'}`}>
                     {correct 
                     ?
                         <h1>Correct!</h1>
@@ -66,9 +66,9 @@ const QuestionCard = ({ question, setScore, nextQuestion }) => {
                     }
                 </div>
             :
-                <div className='flex flex-col items-center p-24'>
-                    <h1 className='mb-32 text-3xl flex-wrap'>{`Which of the following ${type} has been listened to more by ${username} in the last ${rangeString}?`}</h1>
-                    <div className='flex mb-8 p-4'>
+                <div className='flex flex-col items-center pt-2 w-72 xl:p-24'>
+                    <h1 className='xl:mb-32 text-lg xl:text-3xl flex-wrap text-center'>{`Which of the following ${type} has been listened to more by ${username} in the last ${rangeString}?`}</h1>
+                    <div className='flex flex-col xl:flex-row mb-8 p-4'>
                         <button onClick={() => {handleAnswer(0)}}>
                             <div className='flex flex-col items-center justify-between w-96 h-80 border-white border-2 rounded-3xl mx-48 overflow-hidden py-8 text-2xl'>
                                 {embed1 && <div className='max-h-52 overflow-y-scroll scrollbar-padded' dangerouslySetInnerHTML={{ __html: embed1 }} />}

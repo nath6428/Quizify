@@ -53,7 +53,7 @@ const PlayQuiz = ({ params }) => {
 
 
     return (
-        <div className='flex flex-col items-center w-full h-full'>
+        <div className='flex flex-col items-center w-full h-full mt-4 md:mt-10'>
             {loading 
             ?
                 <h1>Loading...</h1> 
@@ -70,7 +70,7 @@ const PlayQuiz = ({ params }) => {
                                     <QuestionDisplay data={quizData} setScore={setScore} score={score} name={name} />
                                 </div>
                             :
-                            <div className='flex flex-col w-80 text-2xl items-center justify-center' onKeyDown={(e) => e.key === 'Enter' && setNameEntered(true)}>
+                            <div className='flex flex-col w-72 md:w-80 text-2xl items-center justify-center' onKeyDown={(e) => e.key === 'Enter' && setNameEntered(true)}>
                                 <h1 className='mb-4'>Enter your name:</h1>
                                 <Input className='w-full mb-4' onChange={(e) => {setName(e.target.value)}} />
                                 <button onClick={() => {setNameEntered(true)}}>Play!</button>

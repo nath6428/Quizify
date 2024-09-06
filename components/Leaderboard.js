@@ -33,7 +33,7 @@ const Leaderboard = ({ quizurl, leaderboard, name, score }) => {
     return (
     <div className='flex flex-col justify-center items-center w-3/4 h-1/2'>
         <h2 className='text-xl'>Your Score: {score}</h2>
-        <h1 className='text-7xl mb-10 mt-4'>Leaderboard</h1>
+        <h1 className=' text-5xl xl:text-7xl mb-10 mt-4'>Leaderboard</h1>
         <div className='flex flex-col items-center w-full h-full'>
             {newLeaderboard.map((entry, index) => (
                 <div className='flex justify-between w-full text-2xl mb-2' key={index}>

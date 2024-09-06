@@ -96,7 +96,7 @@ const Navbar = () => {
                 {renderUserBox()}
             </div>
             <Link href="/" className='hidden md:my-0 md:text-6xl md:flex'>Quizify</Link>
-            <button onClick={() => setLinksVisible((prev) => {return !prev})} className='md:hidden'>≡</button>
+            <button onClick={() => setLinksVisible((prev) => {return !prev})} className='mb-2 md:hidden'>≡</button>
             <div className={`${linksVisible ? 'flex' : 'hidden'} flex-col justify-between md:flex md:flex-row md:w-1/2 md:text-lg`}>
                 <Link href="/song" className='mb-2 md:mb-0'>
                     Currently Listening

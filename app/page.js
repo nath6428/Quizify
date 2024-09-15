@@ -27,12 +27,14 @@ const Homepage = () => {
   }, [session]);
 
   return (
-    <div className="text-4xl flex justify-center p-16 md:text-6xl">
+    <div className="text-4xl flex flex-col items-center justify-center p-16 md:text-6xl">
       {session && session.user ? (
-        <div>Hello, {session.user.name || 'User'}!</div>
+          <h1 className="m-2">Hello, {session.user.name || 'User'}!</h1>
       ) : (
         <div>Hello, user!</div>
       )}
+      <h2 className="text-xl m-2">Try a quiz:</h2>
+      <a className="text-xl text-center m-1" href="https://quizify-self.vercel.app/play-quiz/zapVL2">https://quizify-self.vercel.app/play-quiz/zapVL2</a>
     </div>
   );
 };

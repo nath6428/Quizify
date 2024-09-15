@@ -1,5 +1,7 @@
 # Quizify
 
+## Try: https://quizify-self.vercel.app/play-quiz/zapVL2
+
 ### NOTE: The app is currently in development mode, and only whitelisted accounts can sign in, to get your account whitelisted, email nathancrasto5@gmail.com. To try a quiz, go to: https://quizify-self.vercel.app/play-quiz/j5giv6
 
 🎵 Test your music knowledge with personalized Spotify quizzes!

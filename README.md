@@ -14,6 +14,7 @@ Quizify is an engaging web application that transforms your Spotify listening ha
 - 🔐 Secure Spotify authentication
 - 🎶 Personalized quizzes based on user's listening history
 - 🤝 Challenge friends and compare music tastes
+- 📲 Optimised for PC and phone use
 - 📊 Track quiz scores and music knowledge progress
 
 ## Tech Stack

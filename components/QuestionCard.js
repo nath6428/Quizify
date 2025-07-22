@@ -66,7 +66,7 @@ const QuestionCard = ({ question, setScore, nextQuestion }) => {
                     }
                 </div>
             :
-                <div className='flex flex-col items-center pt-2 w-72 xl:p-24'>
+                <div className='flex flex-col items-center pt-2 xl:p-24'>
                     <h1 className='xl:mb-32 text-lg xl:text-3xl flex-wrap text-center'>{`Which of the following ${type} has been listened to more by ${username} in the last ${rangeString}?`}</h1>
                     <div className='flex flex-col xl:flex-row mb-8 p-4'>
                         <button onClick={() => {handleAnswer(0)}}>
